@@ -48,21 +48,19 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
       ),
       body: Stack(
         children: [
-          Container(
-            child: SizedBox(
-              height: height * .45,
-              width: width,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                child: CachedNetworkImage(
-                  imageUrl: widget.newsImage,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+          SizedBox(
+            height: height * .45,
+            width: width,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: widget.newsImage,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
                 ),
               ),
             ),

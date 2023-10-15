@@ -280,135 +280,133 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: SingleChildScrollView(
-              child: FutureBuilder<CategoriesNewsModel>(
-                  future: newsViewModel.fetchCategoriesNewsApi('General'),
-                  // future: null,
-                  builder: (BuildContext context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const SpinKitSpinningLines(
-                        size: 50,
-                        color: Colors.blue,
-                      );
-                    } else {
-                      return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: snapshot.data!.articles!.length,
-                          itemBuilder: (context, index) {
-                            DateTime dateTime = DateTime.parse(snapshot
-                                .data!.articles![index].publishedAt
-                                .toString());
-                            return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => NewsDetailsScreen(
-                                        newsImage: snapshot
-                                            .data!.articles![index].urlToImage
-                                            .toString(),
-                                        newsTitle: snapshot
-                                            .data!.articles![index].title
-                                            .toString(),
-                                        newsDate: snapshot
-                                            .data!.articles![index].publishedAt
-                                            .toString(),
-                                        author: snapshot.data!.articles![index].author
-                                            .toString(),
-                                        description: snapshot
-                                            .data!.articles![index].description
-                                            .toString(),
-                                        content: snapshot
-                                            .data!.articles![index].content
-                                            .toString(),
-                                        source: snapshot.data!.articles![index].source!.name.toString()),
-                                  ),
-                                );
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 15),
-                                child: Row(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: CachedNetworkImage(
-                                        imageUrl: snapshot
-                                            .data!.articles![index].urlToImage
-                                            .toString(),
-                                        fit: BoxFit.cover,
-                                        height: height * .18,
-                                        width: width * .3,
-                                        placeholder: (context, url) =>
-                                            Container(
-                                          child: spinkit2,
-                                        ),
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(
-                                          Icons.error,
-                                          color: Colors.red,
-                                        ),
+            child: FutureBuilder<CategoriesNewsModel>(
+                future: newsViewModel.fetchCategoriesNewsApi('General'),
+                // future: null,
+                builder: (BuildContext context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const SpinKitSpinningLines(
+                      size: 50,
+                      color: Colors.blue,
+                    );
+                  } else {
+                    return ListView.builder(
+                       // scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.articles!.length,
+                        itemBuilder: (context, index) {
+                          DateTime dateTime = DateTime.parse(snapshot
+                              .data!.articles![index].publishedAt
+                              .toString());
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NewsDetailsScreen(
+                                      newsImage: snapshot
+                                          .data!.articles![index].urlToImage
+                                          .toString(),
+                                      newsTitle: snapshot
+                                          .data!.articles![index].title
+                                          .toString(),
+                                      newsDate: snapshot
+                                          .data!.articles![index].publishedAt
+                                          .toString(),
+                                      author: snapshot.data!.articles![index].author
+                                          .toString(),
+                                      description: snapshot
+                                          .data!.articles![index].description
+                                          .toString(),
+                                      content: snapshot
+                                          .data!.articles![index].content
+                                          .toString(),
+                                      source: snapshot.data!.articles![index].source!.name.toString()),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot
+                                          .data!.articles![index].urlToImage
+                                          .toString(),
+                                      fit: BoxFit.cover,
+                                      height: height * .18,
+                                      width: width * .3,
+                                      placeholder: (context, url) =>
+                                          Container(
+                                        child: spinkit2,
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(
+                                        Icons.error,
+                                        color: Colors.red,
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Container(
-                                        height: height * .18,
-                                        padding:
-                                            const EdgeInsets.only(left: 15),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              snapshot
-                                                  .data!.articles![index].title
-                                                  .toString(),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 2,
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.black54,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                            const Spacer(),
-                                            Row(
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    snapshot
-                                                        .data!
-                                                        .articles![index]
-                                                        .source!
-                                                        .name
-                                                        .toString(),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: GoogleFonts.poppins(
-                                                        color: Colors.blue,
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                            FontWeight.w700),
-                                                  ),
-                                                ),
-                                                Text(
-                                                  format.format(dateTime),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      height: height * .18,
+                                      padding:
+                                          const EdgeInsets.only(left: 15),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            snapshot
+                                                .data!.articles![index].title
+                                                .toString(),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.black54,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          const Spacer(),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  snapshot
+                                                      .data!
+                                                      .articles![index]
+                                                      .source!
+                                                      .name
+                                                      .toString(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style: GoogleFonts.poppins(
+                                                      color: Colors.blue,
                                                       fontSize: 11,
                                                       fontWeight:
-                                                          FontWeight.w500),
+                                                          FontWeight.w700),
                                                 ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
+                                              ),
+                                              Text(
+                                                format.format(dateTime),
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 11,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
+                                          )
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            );
-                          });
-                    }
-                  }),
-            ),
+                            ),
+                          );
+                        });
+                  }
+                }),
           ),
         ],
       ),
