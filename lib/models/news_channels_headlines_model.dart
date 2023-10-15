@@ -11,13 +11,13 @@ class NewsChannelsHeadlinesModel {
     if (json['articles'] != null) {
       articles = <Articles>[];
       json['articles'].forEach((v) {
-        articles!.add(new Articles.fromJson(v));
+        articles!.add( Articles.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['status'] = this.status;
     data['totalResults'] = this.totalResults;
     if (this.articles != null) {

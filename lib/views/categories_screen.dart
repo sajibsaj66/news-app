@@ -167,11 +167,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                     fit: BoxFit.cover,
                                     height: height * 0.18,
                                     width: width * 0.3,
-                                    placeholder: (context, url) => Container(
-                                      child: const SpinKitSpinningLines(
-                                        size: 50,
-                                        color: Colors.blue,
-                                      ),
+                                    placeholder: (context, url) => const SpinKitSpinningLines(
+                                      size: 50,
+                                      color: Colors.blue,
                                     ),
                                     errorWidget: (context, url, error) =>
                                         const Icon(
